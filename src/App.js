@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Header } from './Header';
-import Chart from './Chart';
+import { Chart } from './Chart';
+import { DropdownUtil } from './DropdownUtil';
 import { NICE, SUPER_NICE } from './colors';
 
 class Counter extends Component {
@@ -31,13 +32,16 @@ class Counter extends Component {
 
 export class App extends Component {
   render() {
+    var dropDownOptions = ['option1', 'option2', 'option3'];
     return (
       <div>
         <Header />
+        <DropdownUtil options={ dropDownOptions } />
         <div>
           <Counter increment={1} color={NICE} />
           <Counter increment={5} color={SUPER_NICE} />
         </div>
+        <Chart />
       </div>
     );
   }
