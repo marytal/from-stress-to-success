@@ -4,6 +4,7 @@ import { Chart } from './Chart';
 import { DropdownUtil } from './DropdownUtil';
 import { NICE, SUPER_NICE } from './colors';
 
+
 class Counter extends Component {
   constructor(props) {
     super(props);
@@ -41,7 +42,7 @@ export class App extends Component {
           <Counter increment={1} color={NICE} />
           <Counter increment={5} color={SUPER_NICE} />
         </div>
-        <Chart />
+        <Chart style={ {height: '400px', width: '400px'} }/>
       </div>
     );
   }
