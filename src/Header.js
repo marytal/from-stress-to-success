@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import AppBar from 'material-ui/lib/app-bar';
 
 export class Header extends Component {
   render() {
     return (
-      <div>FROM STRESS TO SUCCESS! This is the Header View</div>
+      <AppBar title="From Stress to Success!">
+      </AppBar>
     );
   }
 }

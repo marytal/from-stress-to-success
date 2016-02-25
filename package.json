@@ -48,13 +48,14 @@
     "rimraf": "^2.4.3",
     "webpack": "^1.12.9",
     "webpack-dev-middleware": "^1.4.0",
-    "webpack-hot-middleware": "^2.6.0",
-    "muicss": "~0.4.6"
+    "webpack-hot-middleware": "^2.6.0"
   },
   "dependencies": {
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
     "highcharts": "~4.2.3",
-    "react-highcharts": "~7.0.0"
+    "react-highcharts": "~7.0.0",
+    "react-tap-event-plugin": "~0.2.2",
+    "material-ui": "~0.14.4",
   }
 }
