@@ -1,5 +1,9 @@
 export default function generateChartConfig(chartData, age, ageOfStress, retirementAge, stressIndex) {
 
+  if (stressIndex === -1) {
+    return _generateBasicChart(chartData, age, retirementAge);
+  }
+
   var userData = chartData['projections']['user'];
   var premiumUserData = chartData['projections']['target'];
 
@@ -14,9 +18,13 @@ export default function generateChartConfig(chartData, age, ageOfStress, retirem
   var stressedUserData = _recalculateDataPoints(userData, ageOfStress - age, userChange);
   var stressedPremiumData = _recalculateDataPoints(premiumUserData, ageOfStress - age, premiumUserChange);
 
-  var config = _generateChartConfigUtil(stressedUserData, premiumUserData, stressTestTitle, age, retirementAge);
+  var config = _generateChartConfigUtil(stressedUserData, stressedPremiumData, stressTestTitle, age, retirementAge);
 
   return config;
+}
+
+var _generateBasicChart = function(chartData, age, retirementAge){
+  return _generateChartConfigUtil(chartData['projections']['user'], chartData['projections']['target'], 'All is Well', age, retirementAge);
 }
 
 
@@ -79,17 +87,18 @@ var _generateChartConfigUtil = function(userData, premiumUserData, stressTestTit
 }
 
 var _recalculateDataPoints = function(data, yearOfChange, change){
-  var percentageChange = (100 + change) / 100
-  data = data.map(function(elem, i) {
-    if(i < yearOfChange){
-      return elem;
-    } else if(i > yearOfChange) {
-      return data[i - 1] * percentageChange;
-    } else if(i == yearOfChange) {
-      return {y: elem, marker: { fillColor: '#00bcd4', radius: 5 } };
+  var adjustedData = [];
+  for (var i = 0; i < data.length; ++i) {
+    if (i < yearOfChange) {
+      adjustedData.push(data[i]);
+    } else if (i === yearOfChange) {
+      adjustedData.push(data[i-1] * ( (100 + change) / 100));
+    } else {
+      let percentageChange = (data[i] - data[i - 1]) / data[i - 1];
+      adjustedData.push(adjustedData[i-1] * (1 + percentageChange));
     }
-  });
-  return data;
+  }
+  return adjustedData;
 }
 
 var _getYearSeries = function(startYear, endYear){
