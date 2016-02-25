@@ -16,9 +16,9 @@ import ContentRemove from 'material-ui/lib/svg-icons/content/remove';
 export default class Portfolio extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       positions: [],
-      currentSymbol: "",
+      currentSymbol: '',
       currentShares: 0,
       currentPricePerShare: 0,
       validSymbol: false,
@@ -44,7 +44,7 @@ export default class Portfolio extends Component {
     }
     this.state.positions.push(position);
     this.setState({
-      currentSymbol: "",
+      currentSymbol: '',
       currentShares: 0,
       currentPricePerShare: 0,
     });
@@ -126,18 +126,18 @@ export default class Portfolio extends Component {
               )
             })}
             <TableRow>
-              <TableRowColumn><TextField hintText="position" onChange={self._changeCode}></TextField></TableRowColumn>
-              <TableRowColumn><TextField hintText="shares" onChange={self._changeShares}></TextField></TableRowColumn>
+              <TableRowColumn><TextField hintText='position' onChange={self._changeCode}></TextField></TableRowColumn>
+              <TableRowColumn><TextField hintText='shares' onChange={self._changeShares}></TextField></TableRowColumn>
               <TableRowColumn>
                 <TextField
-                  hintText="price per share"
+                  hintText='price per share'
                   disabled={true}
                   value={self._numberToCurrency(self.state.currentPricePerShare)}>
                 </TextField>
               </TableRowColumn>
               <TableRowColumn>
               <TextField
-                hintText="total"
+                hintText='total'
                 disabled={true}
                 value={self._numberToCurrency(self.state.currentShares * self.state.currentPricePerShare)}>
                 </TextField>
@@ -151,7 +151,7 @@ export default class Portfolio extends Component {
           </TableBody>
         </Table>
 
-        <RaisedButton secondary={true} label="Submit" />
+        <RaisedButton secondary={true} label='Submit' />
 
       </div>
     );
