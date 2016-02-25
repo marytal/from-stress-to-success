@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import Appbar from 'muicss/lib/react/appbar';
+import AppBar from 'material-ui/lib/app-bar';
 
 export class Header extends Component {
   render() {
     return (
-      <Appbar>
-      </Appbar>
+      <AppBar title="From Stress to Success!">
+      </AppBar>
     );
   }
 }

@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 
-import Input from 'muicss/lib/react/input';
-import Button from 'muicss/lib/react/button';
-
 import Table from 'material-ui/lib/table/table';
 import TableHeaderColumn from 'material-ui/lib/table/table-header-column';
 import TableRow from 'material-ui/lib/table/table-row';
@@ -10,6 +7,7 @@ import TableHeader from 'material-ui/lib/table/table-header';
 import TableRowColumn from 'material-ui/lib/table/table-row-column';
 import TableBody from 'material-ui/lib/table/table-body';
 
+import TextField from 'material-ui/lib/text-field';
 import FloatingActionButton from 'material-ui/lib/floating-action-button';
 import ContentAdd from 'material-ui/lib/svg-icons/content/add';
 import ContentRemove from 'material-ui/lib/svg-icons/content/remove';
@@ -88,10 +86,10 @@ export class Portfolio extends Component {
               )
             })}
             <TableRow>
-              <TableRowColumn><Input hint="position" onChange={self._changeCode}></Input></TableRowColumn>
-              <TableRowColumn><Input hint="shares" onChange={self._changeShares}></Input></TableRowColumn>
-              <TableRowColumn><Input disabled={true}></Input></TableRowColumn>
-              <TableRowColumn><Input disabled={true}></Input></TableRowColumn>
+              <TableRowColumn><TextField hintText="position" onChange={self._changeCode}></TextField></TableRowColumn>
+              <TableRowColumn><TextField hintText="shares" onChange={self._changeShares}></TextField></TableRowColumn>
+              <TableRowColumn><TextField hintText="price per share" disabled={true}></TextField></TableRowColumn>
+              <TableRowColumn><TextField hintText="total" disabled={true}></TextField></TableRowColumn>
               <TableRowColumn>
                 <FloatingActionButton secondary={true} mini={true} onClick={self._addPosition}>
                   <ContentAdd />
