@@ -20,7 +20,7 @@ export default class Portfolio extends Component {
     super(props);
     this.state = {
       positions: [],
-      currentSymbol: "",
+      currentSymbol: '',
       currentShares: 0,
       currentPricePerShare: 0,
       validSymbol: false,
@@ -46,7 +46,7 @@ export default class Portfolio extends Component {
     }
     this.state.positions.push(position);
     this.setState({
-      currentSymbol: "",
+      currentSymbol: '',
       currentShares: 0,
       currentPricePerShare: 0,
     });
@@ -132,14 +132,14 @@ export default class Portfolio extends Component {
               <TableRowColumn><TextField hintText="How many shares do you own?" onChange={this._changeShares}></TextField></TableRowColumn>
               <TableRowColumn>
                 <TextField
-                  hintText="price per share"
+                  hintText='price per share'
                   disabled={true}
                   value={this._numberToCurrency(this.state.currentPricePerShare)}>
                 </TextField>
               </TableRowColumn>
               <TableRowColumn>
               <TextField
-                hintText="total"
+                hintText='total'
                 disabled={true}
                 value={this._numberToCurrency(this.state.currentShares * this.state.currentPricePerShare)}>
                 </TextField>
