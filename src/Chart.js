@@ -10,7 +10,9 @@ var ageOfProjectedDeath = 90;
 
 export default class Chart extends Component {
   render() {
-    var chart = Object.keys(this.props.chartData).length > 0 ? <ReactHighcharts config = {generateChartConfig(this.props.chartData, age, 45, retirementAge, 3)}></ReactHighcharts> : null
+    let {chartData, scenarioIndex} = this.props;
+    console.log(scenarioIndex)
+    let chart = Object.keys(this.props.chartData).length > 0 ? <ReactHighcharts config = {generateChartConfig(chartData, age, 57, retirementAge, scenarioIndex)}></ReactHighcharts> : null
     return (
       <div>
         {chart}
@@ -18,8 +20,3 @@ export default class Chart extends Component {
     );
   }
 }
-
-
-
-
-// Expects that Highcharts was loaded in the code.

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from './Header';
 import Chart from './Chart';
+import ChartContainer from './ChartContainer';
 import Portfolio from './Portfolio';
 
 export default class App extends Component {
@@ -21,9 +22,10 @@ export default class App extends Component {
     return (
       <div>
         <Header />
-        <Portfolio updateChartData={this.updateChartData}/>
-        <Chart chartData={this.state.chartData}/>
+        <Portfolio updateChartData={this.updateChartData} />
+        <ChartContainer chartData={this.state.chartData} />
       </div>
     );
   }
 }
+        // <Chart chartData={this.state.chartData} />
