@@ -10,8 +10,6 @@ export default function generateChartConfig(chartData, age, ageOfStress, retirem
   var userChange = userStressData['portfolioChange'];
   var premiumUserChange = premiumStressData['portfolioChange'];
 
-  debugger;
-
   var stressedUserData = _recalculateDataPoints(userData, ageOfStress - age, userChange);
   var stressedPremiumData = _recalculateDataPoints(premiumUserData, ageOfStress - age, premiumUserChange);
 
