@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Header } from './Header';
 import { Chart } from './Chart';
-import { DropdownUtil } from './DropdownUtil';
 import { Portfolio } from './Portfolio';
 
 export class App extends Component {

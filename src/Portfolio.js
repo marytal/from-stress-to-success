@@ -9,6 +9,7 @@ import TableBody from 'material-ui/lib/table/table-body';
 
 import TextField from 'material-ui/lib/text-field';
 import FloatingActionButton from 'material-ui/lib/floating-action-button';
+import RaisedButton from 'material-ui/lib/raised-button';
 import ContentAdd from 'material-ui/lib/svg-icons/content/add';
 import ContentRemove from 'material-ui/lib/svg-icons/content/remove';
 
@@ -99,12 +100,14 @@ export class Portfolio extends Component {
           </TableBody>
         </Table>
 
-        { this.state.currentShares }
-        { this.state.currentCode }
-        { JSON.stringify(this.state.positions) }
+        <RaisedButton secondary={true} label="Submit" />
+
       </div>
     );
   }
 }
 
 
+        // { this.state.currentShares }
+        // { this.state.currentCode }
+        // { JSON.stringify(this.state.positions) }
