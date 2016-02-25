@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import testData from './testData';
+
 import Table from 'material-ui/lib/table/table';
 import TableHeaderColumn from 'material-ui/lib/table/table-header-column';
 import TableRow from 'material-ui/lib/table/table-row';
@@ -16,7 +18,7 @@ import ContentRemove from 'material-ui/lib/svg-icons/content/remove';
 export default class Portfolio extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       positions: [],
       currentSymbol: "",
       currentShares: 0,
@@ -126,24 +128,24 @@ export default class Portfolio extends Component {
               )
             })}
             <TableRow>
-              <TableRowColumn><TextField hintText="position" onChange={self._changeCode}></TextField></TableRowColumn>
-              <TableRowColumn><TextField hintText="shares" onChange={self._changeShares}></TextField></TableRowColumn>
+              <TableRowColumn><TextField hintText="Enter ticker symbol" onChange={this._changeCode}></TextField></TableRowColumn>
+              <TableRowColumn><TextField hintText="How many shares do you own?" onChange={this._changeShares}></TextField></TableRowColumn>
               <TableRowColumn>
                 <TextField
                   hintText="price per share"
                   disabled={true}
-                  value={self._numberToCurrency(self.state.currentPricePerShare)}>
+                  value={this._numberToCurrency(this.state.currentPricePerShare)}>
                 </TextField>
               </TableRowColumn>
               <TableRowColumn>
               <TextField
                 hintText="total"
                 disabled={true}
-                value={self._numberToCurrency(self.state.currentShares * self.state.currentPricePerShare)}>
+                value={this._numberToCurrency(this.state.currentShares * this.state.currentPricePerShare)}>
                 </TextField>
               </TableRowColumn>
               <TableRowColumn>
-                <FloatingActionButton secondary={true} mini={true} disabled={!self.state.validSymbol} onClick={self._addPosition}>
+                <FloatingActionButton secondary={true} mini={true} disabled={!this.state.validSymbol} onClick={this._addPosition}>
                   <ContentAdd />
                 </FloatingActionButton>
               </TableRowColumn>
@@ -151,7 +153,7 @@ export default class Portfolio extends Component {
           </TableBody>
         </Table>
 
-        <RaisedButton secondary={true} label="Submit" />
+        <RaisedButton secondary={true} label="Submit" onClick={this.props.updateChartData.bind(null, testData)}/>
 
       </div>
     );

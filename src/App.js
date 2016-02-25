@@ -3,12 +3,25 @@ import Header from './Header';
 import Chart from './Chart';
 import Portfolio from './Portfolio';
 
-export class App extends Component {
+export default class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {chartData: {}}
+    this.updateChartData = this.updateChartData.bind(this)
+  }
+
+  updateChartData(chartData) {
+    this.setState({
+      chartData
+    });
+  }
+
   render() {
     return (
       <div>
         <Header />
-        <Portfolio />
+        <Portfolio updateChartData={this.updateChartData}/>
         <Chart />
       </div>
     );
