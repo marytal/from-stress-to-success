@@ -1,4 +1,5 @@
 export default function generateChartConfig(chartData, age, ageOfStress, retirementAge, stressIndex) {
+
   var userData = chartData['projections']['user'];
   var premiumUserData = chartData['projections']['target'];
 
@@ -32,7 +33,7 @@ var _generateChartConfigUtil = function(userData, premiumUserData, stressTestTit
             title: {
               text: 'Age'
             },
-            categories: _getYearSeries(age, 90),
+            categories: _getYearSeries(age, (userData.length + age)),
             labels: {
               step: 2,
               maxStaggerLines: 1,
