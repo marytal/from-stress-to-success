@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Header } from './Header';
-import { Chart } from './Chart';
-import { Portfolio } from './Portfolio';
+import Header from './Header';
+import Chart from './Chart';
+import Portfolio from './Portfolio';
 
 export class App extends Component {
   render() {

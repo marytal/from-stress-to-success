@@ -13,7 +13,7 @@ import RaisedButton from 'material-ui/lib/raised-button';
 import ContentAdd from 'material-ui/lib/svg-icons/content/add';
 import ContentRemove from 'material-ui/lib/svg-icons/content/remove';
 
-export class Portfolio extends Component {
+export default class Portfolio extends Component {
   constructor(props) {
     super(props);
     this.state = { 
