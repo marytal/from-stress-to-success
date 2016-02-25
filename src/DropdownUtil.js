@@ -6,7 +6,7 @@ export class DropdownUtil extends Component {
   render() {
     this.props.options
     return (
-      <Dropdown color="primary" label="Dropdown">
+      <Dropdown color="primary" label="Choose Profile">
         {this.props.options.map(function(option) {
           return <DropdownItem key={option}>{option}</DropdownItem>;
         })}
