@@ -80,13 +80,13 @@ var _generateChartConfigUtil = function(userData, premiumUserData, stressTestTit
 
 var _recalculateDataPoints = function(data, yearOfChange, change){
   var percentageChange = (100 + change) / 100
-  data = data.map(function(data, i) { // data = data.map... ?
+  data = data.map(function(elem, i) {
     if(i < yearOfChange){
-      return data;
+      return elem;
     } else if(i > yearOfChange) {
-      return data * percentageChange;
+      return data[i - 1] * percentageChange;
     } else if(i == yearOfChange) {
-      return {y: data, marker: { fillColor: '#00bcd4', radius: 5 } };
+      return {y: elem, marker: { fillColor: '#00bcd4', radius: 5 } };
     }
   });
   return data;
