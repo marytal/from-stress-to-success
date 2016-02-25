@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 
-export class Chart extends Component {
+export default class Chart extends Component {
   render() {
     return (
       <ReactHighcharts config = {config}></ReactHighcharts>
