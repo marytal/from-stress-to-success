@@ -16,7 +16,7 @@ import ContentRemove from 'material-ui/lib/svg-icons/content/remove';
 export default class Portfolio extends Component {
   constructor(props) {
     super(props);
-    this.state = { positions: [], currentSymbol: "", currentShares: 0, currentPricePerShare: "", currentTotal: "" }
+    this.state = { positions: [], currentSymbol: '', currentShares: 0, currentPricePerShare: '', currentTotal: '' }
 
     this._addPosition = this._addPosition.bind(this)
     this._changeCode = this._changeCode.bind(this)
@@ -36,8 +36,8 @@ export default class Portfolio extends Component {
     }
     this.state.positions.push(position);
     this.setState({
-      currentSymbol: "",
-      currentShares: ""
+      currentSymbol: '',
+      currentShares: ''
     });
   }
 
@@ -87,10 +87,10 @@ export default class Portfolio extends Component {
               )
             })}
             <TableRow>
-              <TableRowColumn><TextField hintText="position" onChange={self._changeCode}></TextField></TableRowColumn>
-              <TableRowColumn><TextField hintText="shares" onChange={self._changeShares}></TextField></TableRowColumn>
-              <TableRowColumn><TextField hintText="price per share" disabled={true}></TextField></TableRowColumn>
-              <TableRowColumn><TextField hintText="total" disabled={true}></TextField></TableRowColumn>
+              <TableRowColumn><TextField hintText='position' onChange={self._changeCode}></TextField></TableRowColumn>
+              <TableRowColumn><TextField hintText='shares' onChange={self._changeShares}></TextField></TableRowColumn>
+              <TableRowColumn><TextField hintText='price per share' disabled={true}></TextField></TableRowColumn>
+              <TableRowColumn><TextField hintText='total' disabled={true}></TextField></TableRowColumn>
               <TableRowColumn>
                 <FloatingActionButton secondary={true} mini={true} onClick={self._addPosition}>
                   <ContentAdd />
@@ -100,7 +100,7 @@ export default class Portfolio extends Component {
           </TableBody>
         </Table>
 
-        <RaisedButton secondary={true} label="Submit" />
+        <RaisedButton secondary={true} label='Submit' />
 
       </div>
     );
