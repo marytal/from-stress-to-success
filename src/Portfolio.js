@@ -16,7 +16,7 @@ import ContentRemove from 'material-ui/lib/svg-icons/content/remove';
 export class Portfolio extends Component {
   constructor(props) {
     super(props);
-    this.state = { positions: [], currentCode: "", currentShares: 0, currentPricePerShare: "", currentTotal: "" }
+    this.state = { positions: [], currentSymbol: "", currentShares: 0, currentPricePerShare: "", currentTotal: "" }
 
     this._addPosition = this._addPosition.bind(this)
     this._changeCode = this._changeCode.bind(this)
@@ -31,19 +31,19 @@ export class Portfolio extends Component {
   _addPosition() {
     // do some validation
     let position = {
-      pos: this.state.currentCode,
+      symbol: this.state.currentSymbol,
       shares: this.state.currentShares
     }
     this.state.positions.push(position);
     this.setState({
-      currentCode: "",
+      currentSymbol: "",
       currentShares: ""
     });
   }
 
   _changeCode(event) {
     // update price per share
-    this.setState({currentCode: event.target.value });
+    this.setState({currentSymbol: event.target.value });
   }
 
   _changeShares(event) {
@@ -71,10 +71,10 @@ export class Portfolio extends Component {
           </TableHeader>
           <TableBody>
             { positions.map(function(position, i) {
-              let { pos, shares, pricePerShare, total} = position;
+              let { symbol, shares, pricePerShare, total} = position;
               return (
                 <TableRow key={i}>
-                  <TableRowColumn>{ pos }</TableRowColumn>
+                  <TableRowColumn>{ symbol }</TableRowColumn>
                   <TableRowColumn>{ shares }</TableRowColumn>
                   <TableRowColumn>{ pricePerShare }</TableRowColumn>
                   <TableRowColumn>{ total }</TableRowColumn>
@@ -109,5 +109,5 @@ export class Portfolio extends Component {
 
 
         // { this.state.currentShares }
-        // { this.state.currentCode }
+        // { this.state.currentSymbol }
         // { JSON.stringify(this.state.positions) }
