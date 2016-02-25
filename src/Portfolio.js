@@ -50,6 +50,11 @@ export class Portfolio extends Component {
     });
   }
 
+  _numberToCurrency(num) {
+    var currency = `$${num.toFixed(2)}`
+    return currency
+  }
+
   _changeCode(event) {
     var self = this;
     var symbol = event.target.value
@@ -59,11 +64,10 @@ export class Portfolio extends Component {
 
     var success = function(data) {
       var pricePerShare = data.query.results.quote.Ask;
-      console.log(pricePerShare)
       if (pricePerShare) {
         self.setState({
           currentSymbol: symbol,
-          currentPricePerShare: pricePerShare,
+          currentPricePerShare: Number(pricePerShare),
           validSymbol: true,
         })
       } else {
@@ -124,8 +128,20 @@ export class Portfolio extends Component {
             <TableRow>
               <TableRowColumn><TextField hintText="position" onChange={self._changeCode}></TextField></TableRowColumn>
               <TableRowColumn><TextField hintText="shares" onChange={self._changeShares}></TextField></TableRowColumn>
-              <TableRowColumn><TextField hintText="price per share" disabled={true} value={self.state.currentPricePerShare}></TextField></TableRowColumn>
-              <TableRowColumn><TextField hintText="total" disabled={true} value={self.state.currentShares * self.state.currentPricePerShare}></TextField></TableRowColumn>
+              <TableRowColumn>
+                <TextField
+                  hintText="price per share"
+                  disabled={true}
+                  value={self._numberToCurrency(self.state.currentPricePerShare)}>
+                </TextField>
+              </TableRowColumn>
+              <TableRowColumn>
+              <TextField
+                hintText="total"
+                disabled={true}
+                value={self._numberToCurrency(self.state.currentShares * self.state.currentPricePerShare)}>
+                </TextField>
+              </TableRowColumn>
               <TableRowColumn>
                 <FloatingActionButton secondary={true} mini={true} disabled={!self.state.validSymbol} onClick={self._addPosition}>
                   <ContentAdd />
