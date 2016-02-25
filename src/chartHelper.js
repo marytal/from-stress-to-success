@@ -1,4 +1,5 @@
 export default function generateChartConfig(chartData, age, ageOfStress, retirementAge, stressIndex) {
+
   var userData = chartData['projections']['user'];
   var premiumUserData = chartData['projections']['target'];
 
@@ -32,7 +33,7 @@ var _generateChartConfigUtil = function(userData, premiumUserData, stressTestTit
             title: {
               text: 'Age'
             },
-            categories: _getYearSeries(age, 90),
+            categories: _getYearSeries(age, (userData.length + age)),
             labels: {
               step: 2,
               maxStaggerLines: 1,
@@ -79,13 +80,13 @@ var _generateChartConfigUtil = function(userData, premiumUserData, stressTestTit
 
 var _recalculateDataPoints = function(data, yearOfChange, change){
   var percentageChange = (100 + change) / 100
-  data = data.map(function(data, i) { // data = data.map... ?
+  data = data.map(function(elem, i) {
     if(i < yearOfChange){
-      return data;
+      return elem;
     } else if(i > yearOfChange) {
-      return data * percentageChange;
+      return data[i - 1] * percentageChange;
     } else if(i == yearOfChange) {
-      return {y: data, marker: { fillColor: '#00bcd4', radius: 5 } };
+      return {y: elem, marker: { fillColor: '#00bcd4', radius: 5 } };
     }
   });
   return data;
