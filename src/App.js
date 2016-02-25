@@ -22,7 +22,7 @@ export default class App extends Component {
       <div>
         <Header />
         <Portfolio updateChartData={this.updateChartData}/>
-        <Chart />
+        <Chart chartData={this.state.chartData}/>
       </div>
     );
   }
