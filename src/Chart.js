@@ -3,6 +3,12 @@ import generateChartConfig from './chartHelper';
 import Highcharts from 'highcharts';
 import ReactHighcharts from 'react-highcharts/bundle/highcharts';
 
+global.Highcharts.setOptions({
+  lang: {
+    thousandsSep: ','
+  }
+});
+
 var age = 29;
 var retirementAge = 60;
 
