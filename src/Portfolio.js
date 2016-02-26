@@ -117,8 +117,8 @@ export default class Portfolio extends Component {
                 <TableRow key={i}>
                   <TableRowColumn>{ symbol }</TableRowColumn>
                   <TableRowColumn>{ shares }</TableRowColumn>
-                  <TableRowColumn>{ pricePerShare }</TableRowColumn>
-                  <TableRowColumn>{ total }</TableRowColumn>
+                  <TableRowColumn>{ self._numberToCurrency(pricePerShare) }</TableRowColumn>
+                  <TableRowColumn>{ self._numberToCurrency(total) }</TableRowColumn>
                   <TableRowColumn>
                     <FloatingActionButton mini={true} onClick={self._removePosition.bind(self, i)}>
                       <ContentRemove />
