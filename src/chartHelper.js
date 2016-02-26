@@ -106,12 +106,6 @@ var _generateChartConfigUtil = function(userData, premiumUserData, stressTestTit
               step: 2,
               maxStaggerLines: 1,
             },
-            plotBands: {
-              from: retirementAge - age,
-              to: userData.length,
-              color: 'rgba(250, 250, 250, 0.5)',
-              zIndex: 5,
-            },
           },
           yAxis: {
             title: {
@@ -135,10 +129,12 @@ var _generateChartConfigUtil = function(userData, premiumUserData, stressTestTit
           },
           series: [{
             name: 'Your Premium Account',
-            data: premiumUserData
+            data: premiumUserData,
+            color: '#4caf50'
           }, {
             name: 'Your Holdings',
-            data: userData
+            data: userData,
+            color: '#f57c00'
           }],
           tooltip: {
             pointFormat: '${point.y:,.0f}',
