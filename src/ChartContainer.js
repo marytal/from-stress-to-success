@@ -11,11 +11,6 @@ const styles = {
   fontSize: 10,
 };
 
-function handleActive(tab) {
-  console.log(tab)
-  alert(`A tab with this route property ${tab.props.route} was activated.`);
-}
-
 export default class ChartContaier extends Component {
 
   render() {
