@@ -50,11 +50,11 @@ var _generateChartConfigUtil = function(userData, premiumUserData, stressTestTit
                   load: function () {
                       var userLabel = this.renderer.label('Your Portfolio: ' + userLoss[2] + '$' + userLoss[0] + ' (' + userLoss[1] + '%) ');
                       var FALabel = this.renderer.label('FutureAdvisor: ' + FALoss[2] + '$' + FALoss[0] + ' (' + FALoss[1] + '%) ');
-                      var title = this.renderer.label('Immediate Loss Post-Stress Event')
+                      var title = this.renderer.label('Asset Changes Post Stress Event')
                       .css({
                           width: '380px',
                           height: '500px',
-                          fontSize: '20px'
+                          fontSize: '15px'
                       })
                       .attr({
                           'stroke': 'silver',
@@ -63,7 +63,8 @@ var _generateChartConfigUtil = function(userData, premiumUserData, stressTestTit
                           'paddingTop': 30
                       });
 
-                      var x = 80;
+                      var yAdjust = 80;
+                      var xAdjust = 190;
 
                       if(stressTestTitle != 'All is Well') {
                         userLabel.add();
@@ -72,22 +73,22 @@ var _generateChartConfigUtil = function(userData, premiumUserData, stressTestTit
 
                         userLabel.align(Highcharts.extend(userLabel.getBBox(), {
                             align: 'left',
-                            x: 120, // offset
+                            x: xAdjust, // offset
                             verticalAlign: 'top',
-                            y: 46 + x // offset
+                            y: 46 + yAdjust // offset
                         }), null, 'spacingBox');
                         FALabel.align(Highcharts.extend(FALabel.getBBox(), {
                             align: 'left',
-                            x: 120, // offset
+                            x: xAdjust, // offset
                             verticalAlign: 'top',
-                            y: 65 + x // offset
+                            y: 65 + yAdjust // offset
                         }), null, 'spacingBox');
 
                         title.align(Highcharts.extend(FALabel.getBBox(), {
                             align: 'left',
-                            x: 120, // offset
+                            x: xAdjust, // offset
                             verticalAlign: 'top',
-                            y: 20 + x // offset
+                            y: 23 + yAdjust // offset
                         }), null, 'spacingBox');
                       }
 
