@@ -9,8 +9,7 @@ var retirementAge = 60;
 export default class Chart extends Component {
   render() {
     let {chartData, scenarioIndex} = this.props;
-    console.log(scenarioIndex)
-    let chart = Object.keys(this.props.chartData).length > 0 ? <ReactHighcharts config = {generateChartConfig(chartData, age, 57, retirementAge, scenarioIndex)}></ReactHighcharts> : null
+    let chart = Object.keys(this.props.chartData).length > 0 ? <ReactHighcharts config = {generateChartConfig(chartData, age, 40, retirementAge, scenarioIndex)}></ReactHighcharts> : null
     return (
       <div>
         {chart}
