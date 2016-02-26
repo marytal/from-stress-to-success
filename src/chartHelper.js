@@ -1,11 +1,13 @@
 export default function generateChartConfig(chartData, age, ageOfStress, retirementAge, stressIndex) {
 
   if (stressIndex === -1) {
-    return _generateBasicChart(chartData, age, retirementAge);
+    return _generateBasicChart(chartData, age, retirementAge, ageOfStress);
   }
 
   var userData = chartData['projections']['user'];
   var premiumUserData = chartData['projections']['target'];
+
+  console.log(age, ageOfStress, retirementAge, userData.length);
 
   var userStressData = chartData['stress_tests']['user'][stressIndex];
   var premiumStressData = chartData['stress_tests']['futureadvisor'][stressIndex];
@@ -18,28 +20,30 @@ export default function generateChartConfig(chartData, age, ageOfStress, retirem
   var stressedUserData = _recalculateDataPoints(userData, ageOfStress - age, userChange);
   var stressedPremiumData = _recalculateDataPoints(premiumUserData, ageOfStress - age, premiumUserChange);
 
-  var config = _generateChartConfigUtil(stressedUserData, stressedPremiumData, stressTestTitle, age, retirementAge);
+  var config = _generateChartConfigUtil(stressedUserData, stressedPremiumData, stressTestTitle, age, retirementAge, ageOfStress);
 
   return config;
 }
 
-var _generateBasicChart = function(chartData, age, retirementAge){
-  return _generateChartConfigUtil(chartData['projections']['user'], chartData['projections']['target'], 'All is Well', age, retirementAge);
+var _generateBasicChart = function(chartData, age, retirementAge, ageOfStress){
+  return _generateChartConfigUtil(chartData['projections']['user'], chartData['projections']['target'], 'All is Well', age, retirementAge, ageOfStress);
 }
 
 
-var _calculateLosses = function(data){
-  var change = data[28] - data[27];
-  var percentageChange = ((Math.abs(data[28]) - Math.abs(data[27])) / Math.abs(data[28])) * 100
+var _calculateLosses = function(data, age, ageOfStress){
+  var a = ageOfStress - age;
+  var b = a - 1;
+  var change = data[a] - data[b];
+  var percentageChange = ((Math.abs(data[a]) - Math.abs(data[b])) / Math.abs(data[a])) * 100
   var symbol = change < 0 ? '-' : '';
   return [Math.abs(change).toLocaleString(), Math.round(percentageChange * 100) / 100, symbol];
 
 }
 
-var _generateChartConfigUtil = function(userData, premiumUserData, stressTestTitle, age, retirementAge) {
+var _generateChartConfigUtil = function(userData, premiumUserData, stressTestTitle, age, retirementAge, ageOfStress) {
 
-  var userLoss = _calculateLosses(userData);
-  var FALoss = _calculateLosses(premiumUserData);
+  var userLoss = _calculateLosses(userData, age, ageOfStress);
+  var FALoss = _calculateLosses(premiumUserData, age, ageOfStress);
 
   var config = {
           chart: {
@@ -95,7 +99,7 @@ var _generateChartConfigUtil = function(userData, premiumUserData, stressTestTit
               text: 'Projected Assets'
             },
             labels: {
-              format: '${value:.0f}',
+              format: '${value:,.0f}',
             },
             min: 0,
           },
@@ -116,7 +120,10 @@ var _generateChartConfigUtil = function(userData, premiumUserData, stressTestTit
           }, {
             name: 'Your Holdings',
             data: userData
-          }]
+          }],
+          tooltip: {
+            pointFormat: '${point.y:,.0f}',
+          }
   };
 
   return config;
@@ -127,12 +134,12 @@ var _recalculateDataPoints = function(data, yearOfChange, change){
   var adjustedData = [];
   for (var i = 0; i < data.length; ++i) {
     if (i < yearOfChange) {
-      adjustedData.push(data[i]);
+      adjustedData.push(parseInt(data[i]));
     } else if (i === yearOfChange) {
-      adjustedData.push(data[i-1] * ( (100 + change) / 100));
+      adjustedData.push(parseInt(data[i-1] * ( (100 + change) / 100)));
     } else {
       let percentageChange = (data[i] - data[i - 1]) / data[i - 1];
-      adjustedData.push(adjustedData[i-1] * (1 + percentageChange));
+      adjustedData.push(parseInt(adjustedData[i-1] * (1 + percentageChange)));
     }
   }
   return adjustedData;
