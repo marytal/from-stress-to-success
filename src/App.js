@@ -4,12 +4,21 @@ import Chart from './Chart';
 import ChartContainer from './ChartContainer';
 import Portfolio from './Portfolio';
 
+import ThemeManager from 'material-ui/lib/styles/theme-manager';
+import customTheme from './customTheme';
+
 export default class App extends Component {
 
   constructor(props) {
     super(props);
     this.state = {chartData: {}}
     this.updateChartData = this.updateChartData.bind(this)
+  }
+
+  getChildContext() {
+    return {
+      muiTheme: ThemeManager.getMuiTheme(customTheme)
+    };
   }
 
   updateChartData(chartData) {
@@ -28,4 +37,7 @@ export default class App extends Component {
     );
   }
 }
-        // <Chart chartData={this.state.chartData} />
+
+App.childContextTypes = {
+  muiTheme: React.PropTypes.object,
+}
