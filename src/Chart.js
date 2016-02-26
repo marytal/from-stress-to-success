@@ -5,8 +5,6 @@ import ReactHighcharts from 'react-highcharts/bundle/highcharts';
 
 var age = 29;
 var retirementAge = 60;
-var yearsInProjection = 61; // data.length
-var ageOfProjectedDeath = 90;
 
 export default class Chart extends Component {
   render() {
