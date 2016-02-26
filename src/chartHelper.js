@@ -48,8 +48,14 @@ var _generateChartConfigUtil = function(userData, premiumUserData, stressTestTit
               zoomType: 'x',
               events: {
                   load: function () {
-                      var userLabel = this.renderer.label('Your Portfolio: ' + userLoss[2] + '$' + userLoss[0] + ' (' + userLoss[1] + '%) ');
-                      var FALabel = this.renderer.label('FutureAdvisor: ' + FALoss[2] + '$' + FALoss[0] + ' (' + FALoss[1] + '%) ');
+                      var userLabel = this.renderer.label('Your Portfolio: ' + userLoss[2] + '$' + userLoss[0] + ' (' + userLoss[1] + '%) ')
+                      .css({
+                        color: '#f57c00',
+                      });
+                      var FALabel = this.renderer.label('FutureAdvisor: ' + FALoss[2] + '$' + FALoss[0] + ' (' + FALoss[1] + '%) ')
+                      .css({
+                        color: '#4caf50',
+                      });
                       var title = this.renderer.label('Asset Changes Post Stress Event')
                       .css({
                           width: '380px',
