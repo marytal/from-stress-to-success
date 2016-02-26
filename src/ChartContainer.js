@@ -11,6 +11,11 @@ const styles = {
   fontSize: 10,
 };
 
+
+const chartStyle = {
+  marginTop: '10px'
+}
+
 export default class ChartContaier extends Component {
 
   render() {
@@ -18,18 +23,30 @@ export default class ChartContaier extends Component {
     let indices = getStressIndices(chartData)
     let self = this;
 
+    var tabs = null;
+    if (Object.keys(chartData).length > 0) {
+      tabs =
+              <Tabs>
+                <Tab style={styles} label='No Impacts' >
+                  <div style={chartStyle} >
+                    <Chart chartData={chartData} scenarioIndex={-1} />
+                  </div>
+                </Tab>
+                { indices.map(function(index) {
+                  return (
+                    <Tab style={styles} label={getTitle(index, chartData)} >
+                      <div style={chartStyle}>
+                        <Chart chartData={chartData} scenarioIndex={index} />
+                      </div>
+                    </Tab>
+                  )
+                })}
+              </Tabs>
+    }
+
     return(
       <div>
-        <Tabs>
-          <Tab style={styles} label='No Impacts' >
-            <Chart chartData={chartData} scenarioIndex={-1} />
-          </Tab>
-          { indices.map(function(index) {
-            return <Tab style={styles} label={getTitle(index, chartData)} >
-              <Chart chartData={chartData} scenarioIndex={index} />
-            </Tab>
-          })}
-        </Tabs>
+        {tabs}
       </div>
     )
   }

@@ -32,7 +32,9 @@ export default class App extends Component {
       <div>
         <Header />
         <Portfolio updateChartData={this.updateChartData} />
-        <ChartContainer chartData={this.state.chartData} />
+        <div style={ {'marginTop': '20px'} }>
+          <ChartContainer chartData={this.state.chartData} />
+        </div>
       </div>
     );
   }

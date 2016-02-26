@@ -7,8 +7,6 @@ export default function generateChartConfig(chartData, age, ageOfStress, retirem
   var userData = chartData['projections']['user'];
   var premiumUserData = chartData['projections']['target'];
 
-  console.log(age, ageOfStress, retirementAge, userData.length);
-
   var userStressData = chartData['stress_tests']['user'][stressIndex];
   var premiumStressData = chartData['stress_tests']['futureadvisor'][stressIndex];
 
@@ -27,7 +25,6 @@ export default function generateChartConfig(chartData, age, ageOfStress, retirem
 
 var _generateBasicChart = function(chartData, age, retirementAge, ageOfStress){
   return _generateChartConfigUtil(chartData['projections']['user'], chartData['projections']['target'], 'All is Well', age, retirementAge, ageOfStress);
-}
 
 
 var _calculateLosses = function(data, age, ageOfStress){
@@ -54,7 +51,7 @@ var _generateChartConfigUtil = function(userData, premiumUserData, stressTestTit
                       var userLabel = this.renderer.label('Your Portfolio: ' + userLoss[2] + '$' + userLoss[0] + ' (' + userLoss[1] + '%) ')
                       var FALabel = this.renderer.label('FutureAdvisor: ' + FALoss[2] + '$' + FALoss[0] + ' (' + FALoss[1] + '%) ')
 
-                      if(stressTestTitle != 'All is Well') {
+                      if(stressTestTitle != 'No Impacts') {
                         userLabel.add();
                         FALabel.add();
 
