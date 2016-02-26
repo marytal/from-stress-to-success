@@ -67,7 +67,7 @@ var getStressIndices = function(chartData){
   });
 
   // returns the Indices of the 5 largest diffs
-  return changes.slice(-5).map(function(data) {
+  return changes.slice(-5).reverse().map(function(data) {
     return data[1];
   });
 }
