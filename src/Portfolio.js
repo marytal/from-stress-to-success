@@ -9,6 +9,11 @@ import TableHeader from 'material-ui/lib/table/table-header';
 import TableRowColumn from 'material-ui/lib/table/table-row-column';
 import TableBody from 'material-ui/lib/table/table-body';
 
+import List from 'material-ui/lib/lists/list';
+import ListItem from 'material-ui/lib/lists/list-item';
+import Avatar from 'material-ui/lib/avatar';
+import TrendingUp from 'material-ui/lib/svg-icons/action/trending-up';
+
 import TextField from 'material-ui/lib/text-field';
 import FloatingActionButton from 'material-ui/lib/floating-action-button';
 import RaisedButton from 'material-ui/lib/raised-button';
@@ -98,7 +103,16 @@ export default class Portfolio extends Component {
 
     return (
       <div>
-        Enter your portfolio:
+        <List>
+          <ListItem
+                disabled={true}
+                leftAvatar={
+                  <Avatar icon={<TrendingUp />} />
+                }
+              >
+              Your Protfolio
+          </ListItem>
+        </List>
 
         <Table selectable={false}>
           <TableHeader>
@@ -153,8 +167,13 @@ export default class Portfolio extends Component {
           </TableBody>
         </Table>
 
-        <RaisedButton secondary={true} label="Submit" onClick={this.props.updateChartData.bind(null, testData)}/>
-
+        <div style={ {'paddingTop': '10px'} }>
+          <RaisedButton
+            secondary={true}
+            label="Submit"
+            onClick={this.props.updateChartData.bind(null, testData)}
+          />
+        </div>
       </div>
     );
   }
