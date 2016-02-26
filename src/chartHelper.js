@@ -28,11 +28,48 @@ var _generateBasicChart = function(chartData, age, retirementAge){
 }
 
 
+var _calculateLosses = function(data){
+  var change = data[28] - data[27];
+  var percentageChange = ((Math.abs(data[28]) - Math.abs(data[27])) / Math.abs(data[28])) * 100
+  var symbol = change < 0 ? '-' : '';
+  return [Math.abs(change).toLocaleString(), Math.round(percentageChange * 100) / 100, symbol];
+
+}
+
 var _generateChartConfigUtil = function(userData, premiumUserData, stressTestTitle, age, retirementAge) {
+
+  var userLoss = _calculateLosses(userData);
+  var FALoss = _calculateLosses(premiumUserData);
 
   var config = {
           chart: {
-              type: 'area'
+              type: 'area',
+              zoomType: 'x',
+              events: {
+                  load: function () {
+                      var userLabel = this.renderer.label('Your Portfolio: ' + userLoss[2] + '$' + userLoss[0] + ' (' + userLoss[1] + '%) ')
+                      var FALabel = this.renderer.label('FutureAdvisor: ' + FALoss[2] + '$' + FALoss[0] + ' (' + FALoss[1] + '%) ')
+
+                      if(stressTestTitle != 'All is Well') {
+                        userLabel.add();
+                        FALabel.add();
+
+                        userLabel.align(Highcharts.extend(userLabel.getBBox(), {
+                            align: 'left',
+                            x: 120, // offset
+                            verticalAlign: 'top',
+                            y: 42 // offset
+                        }), null, 'spacingBox');
+                        FALabel.align(Highcharts.extend(FALabel.getBBox(), {
+                            align: 'left',
+                            x: 120, // offset
+                            verticalAlign: 'top',
+                            y: 65 // offset
+                        }), null, 'spacingBox');
+                      }
+
+                  }
+              },
           },
           title: {
               text: stressTestTitle
